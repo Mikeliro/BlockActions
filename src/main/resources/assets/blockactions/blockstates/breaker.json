@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "blockactions:block/breaker"
+    },
+    "facing=south": {
+      "model": "blockactions:block/breaker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "blockactions:block/breaker",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "blockactions:block/breaker",
+      "y": 90
+    }
+  }
+}

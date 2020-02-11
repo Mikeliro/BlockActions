@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "blockactions:block/hit"
+    },
+    "facing=south": {
+      "model": "blockactions:block/hit",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "blockactions:block/hit",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "blockactions:block/hit",
+      "y": 90
+    }
+  }
+}

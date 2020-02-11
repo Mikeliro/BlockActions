@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "blockactions:block/placer"
+    },
+    "facing=south": {
+      "model": "blockactions:block/placer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "blockactions:block/placer",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "blockactions:block/placer",
+      "y": 90
+    }
+  }
+}
