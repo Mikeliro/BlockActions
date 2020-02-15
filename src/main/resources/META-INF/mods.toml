@@ -1,10 +1,10 @@
 modLoader="javafml" #mandatory
-loaderVersion="[28,)" #mandatory (25 is current forge version)
+loaderVersion="[31,)" #mandatory
 issueTrackerURL="https://www.google.com"
 authors="lazynessmind"
 [[mods]] #mandatory
 modId="blockactions"
-version="0.0.1" #mandatory
+version="0.0.1-1.15.2" #mandatory
 displayName="Block Actions"
 description='''
 Block that reproduce player actions.

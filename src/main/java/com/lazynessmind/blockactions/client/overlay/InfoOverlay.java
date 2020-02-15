@@ -45,33 +45,35 @@ public class InfoOverlay {
         int startPosX = width / 2;
         int startPosY = height / 2;
 
-        if (mc.player.isSneaking()) {
-            int index = 1;
-            for (String key : infoNbt.keySet()) {
-                mc.fontRenderer.drawStringWithShadow(infoNbt.getString(key), startPosX, startPosY + (index * 10), Color.WHITE.getRGB());
-                index++;
-            }
-        } else {
-            mc.fontRenderer.drawStringWithShadow(new TranslationTextComponent("infooverlay.sneak").getFormattedText(), startPosX, startPosY + 10, Color.GRAY.getRGB());
-
-            String specialCase = "";
-            if (blockActionBase instanceof PlacerBlock) {
-                if (!InvUtils.hasInvAbove(pos, mc.world)) {
-                    specialCase = new TranslationTextComponent("infooverlay.placer.needchest").getFormattedText();
+        if (mc.player != null) {
+            if (mc.player.isCrouching()) {
+                int index = 1;
+                for (String key : infoNbt.keySet()) {
+                    mc.fontRenderer.drawStringWithShadow(infoNbt.getString(key), startPosX, startPosY + (index * 10), Color.WHITE.getRGB());
+                    index++;
                 }
-            } else if (blockActionBase instanceof BreakerBlock) {
-                BlockPos facingPos = pos.offset(mc.world.getBlockState(pos).get(BlockActionBase.FACING));
-                BlockState facingState = mc.world.getBlockState(facingPos);
+            } else {
+                mc.fontRenderer.drawStringWithShadow(new TranslationTextComponent("infooverlay.sneak").getFormattedText(), startPosX, startPosY + 10, Color.GRAY.getRGB());
 
-                if (InvUtils.hasInv(facingPos, mc.world)) {
-                    specialCase = new TranslationTextComponent("infooverlay.breaker.canbreakinv").getFormattedText();
-                } else if (facingState.hasTileEntity() && !Configs.BREAK_TE.get()) {
-                    specialCase = new TranslationTextComponent("infooverlay.breaker.canbreakte").getFormattedText();
+                String specialCase = "";
+                if (blockActionBase instanceof PlacerBlock) {
+                    if (!InvUtils.hasInvAbove(pos, mc.world)) {
+                        specialCase = new TranslationTextComponent("infooverlay.placer.needchest").getFormattedText();
+                    }
+                } else if (blockActionBase instanceof BreakerBlock) {
+                    BlockPos facingPos = pos.offset(mc.world.getBlockState(pos).get(BlockActionBase.FACING));
+                    BlockState facingState = mc.world.getBlockState(facingPos);
+
+                    if (InvUtils.hasInv(facingPos, mc.world)) {
+                        specialCase = new TranslationTextComponent("infooverlay.breaker.canbreakinv").getFormattedText();
+                    } else if (facingState.hasTileEntity() && !Configs.BREAK_TE.get()) {
+                        specialCase = new TranslationTextComponent("infooverlay.breaker.canbreakte").getFormattedText();
+                    }
                 }
-            }
 
-            if (!specialCase.isEmpty()) {
-                mc.fontRenderer.drawSplitString(specialCase, startPosX, startPosY + 20, 100, Color.RED.getRGB());
+                if (!specialCase.isEmpty()) {
+                    mc.fontRenderer.drawSplitString(specialCase, startPosX, startPosY + 20, 100, Color.RED.getRGB());
+                }
             }
         }
     }
